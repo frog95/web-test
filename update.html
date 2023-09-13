@@ -1,0 +1,17 @@
+<script>
+  var update_timer = function() {
+    $.get("info.php", function (data) {
+      var obj = JSON.parse(data);
+      for (var k in obj) {
+        if (k=="param-en") {
+          console.log(k+"::"+obj[k]);
+          $("#param").attr("disabled",obj[k]); 
+        } else {
+          console.log(k+":"+obj[k]);
+          $('input[id='+k+']').val(obj[k]);
+        }
+        }
+    });
+  };
+  setInterval(update_timer, 1000);
+</script>
